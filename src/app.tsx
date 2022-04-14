@@ -1,8 +1,8 @@
 import React from 'react';
-import './App.css';
+import './app.module.css';
 import {AuthService} from "./service/AuthService";
 import Login from "./components/login/login";
-
+import styles from './app.module.css';
 
 function App() {
     const authService: AuthService = new AuthService();
