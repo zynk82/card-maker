@@ -1,0 +1,67 @@
+.container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 15em;
+    background-color: var(--maker-green);
+    margin: 0.5em;
+    padding: 2em;
+    border-radius: 1em;
+    color: var(--maker-white);
+}
+
+.pic {
+    object-fit: cover;
+    width: 10em;
+    height: 10em;
+    margin-right: 2em;
+    border-radius: 50%;
+}
+
+.profile {
+    flex: 1;
+    font-size: 1.2em;
+}
+
+.name {
+    font-size: 1.5em;
+    margin-bottom: 0.4em;
+}
+
+.company {
+    margin-bottom: 0.4em;
+}
+
+.company::after {
+    content: '';
+    display: block;
+    width: 90%;
+    height: 2px;
+    background-color: var(--maker-wheat);
+    transform: translateY(0.2em);
+}
+
+.job, .email, .message {
+    margin-bottom: 0.2em;
+}
+
+.email {
+}
+
+.message {
+}
+
+.bg_dark {
+    background-color: var(--maker-black);
+
+}
+
+.bg_light {
+    background-color: var(--maker-wheat);
+
+}
+
+.bg_colorful {
+    background: var(--maker-colorful);
+
+}

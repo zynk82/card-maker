@@ -11,3 +11,11 @@
     color: var(--maker-green);
     padding: 0.5em;
 }
+
+.cards {
+    padding: 1em;
+    width: 100%;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
