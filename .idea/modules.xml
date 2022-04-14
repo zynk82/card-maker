@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/card-maker-breaked.iml" filepath="$PROJECT_DIR$/card-maker-breaked.iml" />
+      <module fileurl="file://$PROJECT_DIR$/card-maker.iml" filepath="$PROJECT_DIR$/card-maker.iml" />
     </modules>
   </component>
 </project>
