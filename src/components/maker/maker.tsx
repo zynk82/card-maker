@@ -4,6 +4,8 @@ import styles from './maker.module.css';
 import Footer from "../footer/footer";
 import {User} from "../../type/Types";
 import {useNavigate} from "react-router-dom";
+import Editor from "../editor/editor";
+import Preview from "../preview/preview";
 
 type MakerProps = {
     user: User | undefined;
@@ -19,13 +21,16 @@ const Maker = ({user, onLogOut}: MakerProps) => {
     }, []);
 
     return (
-        <section className={styles.maker}>
-            <Header user={user} onLogOut={handleLogOut}/>
-            <main className={styles.contents}>
-                <h1>main</h1>
-            </main>
-            <Footer/>
-        </section>
+        <div className={styles.container}>
+            <section className={styles.maker}>
+                <Header user={user} onLogOut={handleLogOut}/>
+                <main className={styles.contents}>
+                    <Editor/>
+                    <Preview/>
+                </main>
+                <Footer/>
+            </section>
+        </div>
     )
 };
 
