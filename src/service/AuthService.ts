@@ -4,6 +4,7 @@ import {
     OAuthCredential,
     signInWithEmailAndPassword,
     signInWithPopup,
+    signOut,
     UserCredential
 } from "@firebase/auth";
 import {User} from "@firebase/auth/dist/node-esm/src/model/public_types";
@@ -39,14 +40,26 @@ export class AuthService {
                 console.log(`sign in succeed. email : ${email}`);
                 console.dir(user);
 
-            }).catch((error) => {
-                const code = error.code;
-                const message = error.message;
+                return Promise.resolve(user);
 
-                console.log(`code : ${code}, message : ${message}`);
+            }).catch((error) => {
+                console.log(`code : ${error.code}, message : ${error.message}`);
 
             });
     };
+
+    async signOut() {
+        return await signOut(this.firebase.getAuth())
+            .then(() => {
+                console.log(`sign out succeed.`);
+
+                return Promise.resolve();
+
+            }).catch((error) => {
+                console.log(`code : ${error.code}, message : ${error.message}`);
+
+            });
+    }
 
     async google() {
         const provider = new GoogleAuthProvider();
@@ -64,11 +77,10 @@ export class AuthService {
 
                 console.dir(user);
 
-            }).catch((error) => {
-                const code = error.code;
-                const message = error.message;
+                return Promise.resolve(user);
 
-                console.log(`code : ${code}, message : ${message}`);
+            }).catch((error) => {
+                console.log(`code : ${error.code}, message : ${error.message}`);
 
             });
     }

@@ -1,18 +1,33 @@
-import React from 'react';
+import React, {useCallback, useState} from 'react';
 import './app.module.css';
-import {AuthService} from "./service/AuthService";
 import Login from "./components/login/login";
 import styles from './app.module.css';
+import {BrowserRouter, Route, Routes} from "react-router-dom";
+import Main from "./components/main/main";
+import {User} from "./type/Types";
 
 function App() {
-    const authService: AuthService = new AuthService();
+    const [user, setUser] = useState<User | undefined>();
 
-    // authService.signIn('zynk82@naver.com', 'password');
-    // authService.signUp('zynk82@naver.com', 'password');
+    const handleLogout = useCallback(() => {
+        setUser(undefined);
+    }, []);
+
+
+    const handleLogin = useCallback((user: User) => {
+        setUser(user);
+    }, []);
 
     return (
         <div className={styles.app}>
-            <Login/>
+            <BrowserRouter>
+                <Routes>
+                    <Route path='/login' element={<Login onLogIn={handleLogin} onLogOut={handleLogout} user={user}/>}/>
+                    <Route path='/main' element={<Main user={user} onLogOut={handleLogout}/>}/>
+                    <Route path='/' element={<Login onLogIn={handleLogin} onLogOut={handleLogout} user={user}/>}/>
+                </Routes>
+            </BrowserRouter>
+
         </div>
     );
 }
