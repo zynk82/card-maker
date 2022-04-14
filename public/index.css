@@ -1,0 +1,33 @@
+:root {
+    --maker-black: black;
+    --maker-white: white;
+    --maker-lightGrey: #e8e7e6;
+    --maker-lightPink: #ffeae8;
+    --maker-grey: #626262;
+    --maker-green: #385461;
+    --maker-pink: pink;
+    --maker-shadow: rgba(217, 217, 217, 1);
+    --maker-colorful: linear-gradient(166deg, rgba(237, 193, 211, 1) 0%, rgba(212, 149, 161, 1) 60%, rgba(162, 63, 63, 1) 100%, rgba(127, 188, 242, 1) 100%);
+    --maker-wheat: wheat;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100vw;
+    height: 100vh;
+}
+
+button {
+    cursor: pointer;
+}
+
+#root {
+    width: 100%;
+    height: 100%;
+}
+

@@ -1,0 +1,10 @@
+.footer {
+    width: 100%;
+    background: var(--maker-green);
+    text-align: center;
+}
+
+.title {
+    padding: 0.5em 0;
+    color: var(--maker-white);
+}

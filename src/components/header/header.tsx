@@ -11,7 +11,7 @@ const Header = ({onLogout}: HeaderProps) => {
             <header className={styles.header}>
                 {
                     onLogout &&
-                    <button onClick={onLogout}>Logout</button>
+                    <button className={styles.logout} onClick={onLogout}>Logout</button>
                 }
                 <img src='/images/logo.png' alt='logo'/>
                 <h1>Business Card Maker</h1>

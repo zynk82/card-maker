@@ -11,7 +11,7 @@ function App() {
     // authService.signUp('zynk82@naver.com', 'password');
 
     return (
-        <div className="App">
+        <div className={styles.app}>
             <Login/>
         </div>
     );
