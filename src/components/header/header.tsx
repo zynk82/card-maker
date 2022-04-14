@@ -10,7 +10,7 @@ type HeaderProps = {
 
 const Header = ({user, onLogOut}: HeaderProps) => {
     const onLogOutClick = useCallback(() => {
-        new AuthService().signOut().then(() => {
+        AuthService.getInstance().signOut().then(() => {
             onLogOut();
         });
     }, []);

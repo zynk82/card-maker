@@ -2,10 +2,11 @@ import {createUserWithEmailAndPassword} from "firebase/auth";
 import {
     GoogleAuthProvider,
     OAuthCredential,
+    onAuthStateChanged,
     signInWithEmailAndPassword,
     signInWithPopup,
     signOut,
-    UserCredential
+    UserCredential,
 } from "@firebase/auth";
 import {User} from "@firebase/auth/dist/node-esm/src/model/public_types";
 import {Firebase} from "./firebase";
@@ -13,6 +14,19 @@ import {Firebase} from "./firebase";
 export type ProviderName = 'Google' | 'Github';
 
 export class AuthService {
+    private static instance: AuthService | undefined;
+
+    static getInstance() {
+        if (!this.instance) {
+            this.instance = new AuthService();
+        }
+
+        return this.instance;
+    }
+
+    private constructor() {
+    }
+
     private firebase: Firebase = Firebase.getInstance();
 
     async signUp(email: string, password: string) {
@@ -59,6 +73,14 @@ export class AuthService {
                 console.log(`code : ${error.code}, message : ${error.message}`);
 
             });
+    }
+
+    onAuthChanged(callback: (user: User | null) => void) {
+        onAuthStateChanged(this.firebase.getAuth(), (user: User | null) => {
+            console.log(`auth changed. ${user}`);
+
+            callback(user);
+        });
     }
 
     async google() {

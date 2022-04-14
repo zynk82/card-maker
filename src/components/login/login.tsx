@@ -1,9 +1,9 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import Header from "../header/header";
 import Footer from "../footer/footer";
 import styles from './login.module.css';
 import {User} from "../../type/Types";
-import {useNavigate} from "react-router-dom";
+import {useLocation, useNavigate} from "react-router-dom";
 import {AuthService} from "../../service/AuthService";
 
 type LoginProps = {
@@ -14,19 +14,58 @@ type LoginProps = {
 
 const Login = ({user, onLogIn, onLogOut}: LoginProps) => {
     const navigate = useNavigate();
+    const {state: routeState} = useLocation();
+
+    useEffect(() => {
+        const authService: AuthService = AuthService.getInstance();
+        authService.onAuthChanged(onAuthChanged);
+    });
+
+    const goMaker = (user: User) => {
+        navigate('/maker', {
+            state: user.uid,
+        });
+    }
+
+    const onAuthChanged = (user: any) => {
+        if (user) {
+            const uid = user!.uid!;
+
+            let newUser: User = {
+                name: '',
+                email: user!.email!,
+                uid: uid,
+            };
+
+            onLogIn(newUser);
+
+            goMaker(newUser);
+
+        } else {
+            navigate('/login', {});
+
+        }
+    }
 
     const onGoogleClick = useCallback(() => {
-        new AuthService().google().then((user) => {
-                onLogIn(
-                    {
-                        name: '',
-                        email: user!.email!,
-                    }
-                );
-
-                navigate('/main');
-            }
-        );
+        const authService: AuthService = AuthService.getInstance();
+        authService.onAuthChanged(onAuthChanged);
+        authService.google().then((user) => {
+            //
+            //     const uid = user!.uid!;
+            //     onLogIn(
+            //         {
+            //             name: '',
+            //             email: user!.email!,
+            //             uid: uid,
+            //         }
+            //     );
+            //
+            //     navigate('/maker', {
+            //         state: uid,
+            //     });
+            // }
+        });
 
         // onLogIn(
         //     {
@@ -35,7 +74,7 @@ const Login = ({user, onLogIn, onLogOut}: LoginProps) => {
         //     }
         // );
         //
-        // navigate('/main');
+        // navigate('/maker');
 
         // new AuthService().signIn('', 'password')
         //     .then((user) => {
@@ -46,21 +85,18 @@ const Login = ({user, onLogIn, onLogOut}: LoginProps) => {
         //             }
         //         );
         //
-        //         navigate('/main');
+        //         navigate('/maker');
         //     })
 
 
     }, []);
 
     const handleLogout = useCallback(() => {
-        new AuthService().signOut().then(() => {
+        AuthService.getInstance().signOut().then(() => {
                 onLogOut();
                 navigate('/login');
             }
         );
-
-        // onLogOut();
-        // navigate('/login');
 
     }, []);
 

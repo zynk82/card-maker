@@ -3,7 +3,7 @@ import './app.module.css';
 import Login from "./components/login/login";
 import styles from './app.module.css';
 import {BrowserRouter, Route, Routes} from "react-router-dom";
-import Main from "./components/main/main";
+import Maker from "./components/maker/maker";
 import {User} from "./type/Types";
 
 function App() {
@@ -23,7 +23,7 @@ function App() {
             <BrowserRouter>
                 <Routes>
                     <Route path='/login' element={<Login onLogIn={handleLogin} onLogOut={handleLogout} user={user}/>}/>
-                    <Route path='/main' element={<Main user={user} onLogOut={handleLogout}/>}/>
+                    <Route path='/maker' element={<Maker user={user} onLogOut={handleLogout}/>}/>
                     <Route path='/' element={<Login onLogIn={handleLogin} onLogOut={handleLogout} user={user}/>}/>
                 </Routes>
             </BrowserRouter>

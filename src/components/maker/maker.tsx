@@ -1,16 +1,16 @@
 import React, {useCallback} from 'react';
 import Header from "../header/header";
-import styles from './main.module.css';
+import styles from './maker.module.css';
 import Footer from "../footer/footer";
 import {User} from "../../type/Types";
 import {useNavigate} from "react-router-dom";
 
-type MainProps = {
+type MakerProps = {
     user: User | undefined;
     onLogOut: () => void;
 }
 
-const Main = ({user, onLogOut}: MainProps) => {
+const Maker = ({user, onLogOut}: MakerProps) => {
     const navigate = useNavigate();
 
     const handleLogOut = useCallback(() => {
@@ -19,14 +19,14 @@ const Main = ({user, onLogOut}: MainProps) => {
     }, []);
 
     return (
-        <div className={styles.main}>
+        <section className={styles.maker}>
             <Header user={user} onLogOut={handleLogOut}/>
             <main className={styles.contents}>
                 <h1>main</h1>
             </main>
             <Footer/>
-        </div>
+        </section>
     )
 };
 
-export default Main;
+export default Maker;
