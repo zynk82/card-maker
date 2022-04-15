@@ -32,6 +32,8 @@
 
 .textarea {
     flex-basis: 100%;
+    resize: vertical;
+    font-family: unset;
 }
 
 .button {
@@ -43,6 +45,10 @@
 }
 
 .delete {
+    background-color: var(--maker-green);
+}
+
+.add {
     background-color: var(--maker-green);
 }
 

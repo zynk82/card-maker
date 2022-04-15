@@ -5,10 +5,10 @@ export type User = {
 }
 
 export type Card = {
-    id: number,
+    id: number|undefined,
     name: string,
     company: string,
-    color: CardColor,
+    color: string,
     job: string,
     email: string,
     message: string,

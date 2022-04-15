@@ -1,12 +1,19 @@
-import React from 'react';
+import React, {SyntheticEvent} from 'react';
 import {Card} from "../../../../type/Types";
 import styles from './card-form.module.css';
 
 type CardFormProps = {
     card: Card;
+    onDeleteClick: (id: number) => void;
 }
 
-const CardForm = ({card}: CardFormProps) => {
+const CardForm = ({card, onDeleteClick}: CardFormProps) => {
+    const onDeleteClickListener = (e: SyntheticEvent) => {
+        e.preventDefault();
+
+        onDeleteClick(card.id!);
+    };
+
     return (
         <li className={styles.li}>
             <form className={styles.form}>
@@ -20,12 +27,11 @@ const CardForm = ({card}: CardFormProps) => {
                 <input className={styles.input} type="text" name='job' value={card.job}/>
                 <input className={styles.input} type="text" name='email' value={card.email}/>
                 <textarea className={styles.textarea} name='message' value={card.message}/>
-                <button className={`${styles.button} ${styles.delete}`}>Delete</button>
+                <button className={`${styles.button} ${styles.delete}`} onClick={onDeleteClickListener}>Delete</button>
                 <button className={`${styles.button} ${styles.image}`}>Image</button>
             </form>
         </li>
     );
 };
-
 
 export default CardForm;
