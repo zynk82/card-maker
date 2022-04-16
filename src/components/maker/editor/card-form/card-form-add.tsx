@@ -1,6 +1,7 @@
 import React, {SyntheticEvent, useCallback, useRef} from 'react';
 import {Card} from "../../../../type/Types";
 import styles from './card-form.module.css';
+import UploadButton from "../upload-button/upload-button";
 
 type CardFormProps = {
     onAddClick: (card: Card) => void;
@@ -52,8 +53,9 @@ const CardFormAdd = ({onAddClick}: CardFormProps) => {
                        placeholder='Email'/>
                 <textarea className={styles.textarea} ref={messageRef} name='message'
                           placeholder='Message'/>
+                <UploadButton fileName={undefined}/>
                 <button className={`${styles.button} ${styles.add}`} onClick={onAddDeleteClick}>Add</button>
-                <button className={`${styles.button} ${styles.image}`}>Image</button>
+                {/*<button className={`${styles.button} ${styles.image}`}>Image</button>*/}
             </form>
         </li>
     );

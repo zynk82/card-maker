@@ -8,9 +8,10 @@ type EditorProps = {
     cards: Card[];
     onAddClick: (card: Card) => void;
     onDeleteClick: (id: number) => void;
+    onCardChange: (card: Card) => void;
 }
 
-const Editor = ({cards, onAddClick, onDeleteClick}: EditorProps) => {
+const Editor = ({cards, onAddClick, onCardChange, onDeleteClick}: EditorProps) => {
     return (
         <section className={styles.editor}>
             <h1 className={styles.title}>Card Maker</h1>
@@ -18,7 +19,7 @@ const Editor = ({cards, onAddClick, onDeleteClick}: EditorProps) => {
                 {
                     cards.map((card: Card) => {
                         if (card.id) {
-                            return <CardForm card={card} onDeleteClick={onDeleteClick}/>;
+                            return <CardForm card={card} onDeleteClick={onDeleteClick} onCardChange={onCardChange}/>;
                         }
                     })
                 }
